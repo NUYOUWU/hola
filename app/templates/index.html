@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>LISTADO DE USUARIOS</h1>
+        <table>
+            <thead>
+                <th>Codigo:</th>
+                <th>Nombre:</th>
+                <th>Apellido:</th>
+                <th>Email:</th>
+                <th>Direccion:</th>
+                <th>Telefono:</th>
+                <th>Usuario:</th>
+                <th>Acciones:</th>
+            </thead>
+            <tbody>
+                {% for persona in personas %}
+                <tr>
+                    <td>{{ persona[0] }}</td>
+                    <td>{{ persona[1] }}</td>
+                    <td>{{ persona[2] }}</td>
+                    <td>{{ persona[3] }}</td>
+                    <td>{{ persona[4] }}</td>
+                    <td>{{ persona[5] }}</td>
+                    <td>{{ persona[6] }}</td>
+                    <td>
+                        <a href="inicio.html">Iniciar Sesión</a>
+                        <a href="{{ url_for('editar_usuario', id=persona[0]) }}">Editar</a>
+                        <form method="POST" action="{{ url_for('eliminar_usuario', id=persona[0]) }}" style="display: inline;">
+                        <input type="hidden" name="method" value="delete">
+                        <input type="submit" value="Eliminar">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html lang ="es">
+<head>
+    <meta charset="utf - 8">
+    <meta name ="viewport" content ="whith=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
+</head>
+<body>
+<h1>Editar Personas</h1>
+<form method="POST" actio="">
+    <label>Codigo:</label>
+    <input type="number" name="idper" value="{{ personas [0]}}"><br>
+    <label>Nombre:</label>
+    <input type="text" name="nombreper" value="{{ personas [1]}}"><br>
+    <label>Apellido:</label>
+    <input type="text" name="apellidoper" value="{{ personas [2]}}"><br>
+    <label>Email:</label>
+    <input type="email" name="emailper" value="{{ personas [3]}}"><br>
+    <label>Direccion</label>
+    <input type="text" name="direccionper" value="{{ personas [4]}}"><br>
+    <label>Telefono</label>
+    <input type="number" name="telefonoper" value="{{ personas [5]}}"><br>
+    <label>Usuario</label>
+    <input type="text" name="usuarioper" value="{{ personas [6]}}"><br>
+    <label>Contraseña:</label>
+    <input type="password" name="passwordper" value="{{ personas [7]}}"><br>
+    <input type="submit" value="Guardar cambios">
+
+</form>
+
+
+</body>
+</html> 
