@@ -1,11 +1,15 @@
+  
 * {
-     margin: 0;
+    opacity: 1;
+    background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #40948d 15px ), repeating-linear-gradient;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
 }
 
 body {
+    
     background-color: #ff032d;
     opacity: 0.8;
     background: linear-gradient(135deg, #ffffff55 25%, transparent 25%) -9px 0/ 18px 18px, linear-gradient(225deg, #ffffff 25%, transparent 25%) -9px 0/ 18px 18px, linear-gradient(315deg, #ffffff55 25%, transparent 25%) 0px 0/ 18px 18px, linear-gradient(45deg, #ffffff 25%, #ff032d 25%) 0px 0/ 18px 18px;    

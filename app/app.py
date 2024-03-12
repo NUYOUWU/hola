@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, request, url_for, flash,session
 import mysql.connector
-import bcrypt
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
+app.secret_key = '9999999'
 
 db = mysql.connector.connect(
     host="localhost",
@@ -13,37 +13,44 @@ db = mysql.connector.connect(
 )
 
 cursor = db.cursor()
-
+@app.route('/password/<password>')
 def encriptarcontraseña(contraencript):
+    encriptar = generate_password_hash(contraencript)
+    valor = check_password_hash(encriptar,contraencript)
 
-    encriptar = bcrypt.hashpw(contraencript.encode('utf-8'),bcrypt.gensalt())
+    return "encriptado:{0}| coincide:{1}".format(encriptar,valor) 
 
-    return encriptar
+   # encriptar = bcrypt.hashpw(contraencript.encode('utf-8'),bcrypt.gensalt())
+
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
 
-    if request.method == 'post':
+    if request.method == 'POST':
         username = request.form.get('txtusuario')
         password = request.form.get('txtcontrasena')
 
         cursor = db.cursor()
         cursor.execute('select usuarioper contraper from personas where usuarioper = %s',(username,))
-        usuarios = cursor.fetchall()
+        resultado = cursor.fetchone()
 
-        if usuarios and bcrypt.check_password_hash(usuarios[7],password):
+        if resultado or encriptarcontraseña(password) == resultado[1]:
             session['usuario'] = username
             return redirect(url_for('lista'))
         else:
-            error = 'credenciales incorrectas. intentelo nuevamente'
-            return render_template('inicio.html',error=error)
-    return render_template('inicio.html')
+            flash('credenciales invalidas,por favor volver a intentar',"error")
+            return redirect(url_for('login'))
+    else:
+            return render_template('login.html')
 @app.route('/')
 def lista():
-    cursor = db.cursor()
-    cursor.execute('SELECT * FROM personas')
-    personas = cursor.fetchall()
-    return render_template('index.html', personas=personas)
+    if 'usuario' in session:
+        cursor.execute('SELECT * FROM personas')
+        personas = cursor.fetchall()
+        return render_template('index.html', personas=personas)
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/Registrar', methods=['GET', 'POST'])
 def Registrar_usuario():
@@ -105,6 +112,8 @@ def eliminar_usuario(id):
         db.commit()
         flash('Usuario eliminado correctamente', 'success') 
         return redirect(url_for('lista'))
+    
+
 if __name__ == '__main__':
     app.add_url_rule('/', view_func=lista)
     app.run(debug=True, port=5005)
