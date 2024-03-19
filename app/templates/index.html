@@ -2,13 +2,15 @@
 
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container">
+        <h1>Bienvenido, {{ session['usuario'] }}</h1>
+        <p>Inicio de sesion correctamente</p>
+        <a href="/logout">Cerrar sesión</a>
         <h1>LISTADO DE USUARIOS</h1>
         <table>
             <thead>
@@ -32,11 +34,11 @@
                     <td>{{ persona[5] }}</td>
                     <td>{{ persona[6] }}</td>
                     <td>
-                        <a href="inicio.html">Iniciar Sesión</a>
                         <a href="{{ url_for('editar_usuario', id=persona[0]) }}">Editar</a>
                         <form method="POST" action="{{ url_for('eliminar_usuario', id=persona[0]) }}" style="display: inline;">
-                        <input type="hidden" name="method" value="delete">
-                        <input type="submit" value="Eliminar">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Eliminar">
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}

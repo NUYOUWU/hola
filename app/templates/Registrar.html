@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>formulario</title>
     <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css')}}">
+    
 </head>
 <body>
     <div class="container">
@@ -26,8 +27,13 @@
                 <label>CONTRASEÑA:</label>
                 <input type="password" placeholder="Ingresar su contraseña" name="contrasena">
                 <input type="submit" value="Enviar">
-
+                <label for="rol">Asignacion de rol</label>
+                <select id="rol" name="txtrol" required>
+                    <option value="administrador">administrador</option>
+                    <option value="comprador">compredor</option>
+                </select>
             </div>
+            <button type="submit">Enviar</button>
         </form>
     </div>  
 </body>
