@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Canciones</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Canciones</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Artista</th>
+                    <th>Género</th>
+                    <th>Precio</th>
+                    <th>Duración</th>
+                    <th>Lanzamiento</th>
+                    <th>imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cancion in canciones %}
+                <tr>
+                    <td>{{ cancion['titulo'] }}</td>
+                    <td>{{ cancion['artista'] }}</td>
+                    <td>{{ cancion['genero'] }}</td>
+                    <td>{{ cancion['precio'] }}</td>
+                    <td>{{ cancion['duracion'] }}</td>
+                    <td>{{ cancion['lanzamiento'] }}</td>
+                    <td>{{ cancion['imagen'] }}</td>
+                    <td>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="navigation-buttons">
+            <a href="{{ url_for('compras') }}">Ir a Compras</a>
+        </div>
+    </div>
+</body>
+</html>

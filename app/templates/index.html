@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido, {{ session['usuario'] }}</h1>
+        <p>Inicio de sesión correctamente</p>
+        <a href="/logout">Cerrar sesión</a>
+
+        <!-- Agregar botones para redirigir a las páginas de Canciones y Compras -->
+        <div>
+            <a href="{{ url_for('canciones') }}"><button>Agregar Canciones</button></a>
+            <a href="{{ url_for('compras') }}"><button>Ver Compras</button></a>
+            <a href="{{ url_for('lista_canciones') }}"><button>Ver Lista de Canciones</button></a>
+            
+            
+
+
+        </div>
+
+        <h1>LISTADO DE USUARIOS</h1>
+        <table>
+            <thead>
+                <th>Codigo:</th>
+                <th>Nombre:</th>
+                <th>Apellido:</th>
+                <th>Email:</th>
+                <th>Direccion:</th>
+                <th>Telefono:</th>
+                <th>Usuario:</th>
+                <th>Acciones:</th>
+            </thead>
+            <tbody>
+                {% for persona in personas %}
+                <tr>
+                    <td>{{ persona[0] }}</td>
+                    <td>{{ persona[1] }}</td>
+                    <td>{{ persona[2] }}</td>
+                    <td>{{ persona[3] }}</td>
+                    <td>{{ persona[4] }}</td>
+                    <td>{{ persona[5] }}</td>
+                    <td>{{ persona[6] }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_usuario', id=persona[0]) }}">Editar</a>
+                        <form method="POST" action="{{ url_for('eliminar_usuario', id=persona[0]) }}" style="display: inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="submit" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+

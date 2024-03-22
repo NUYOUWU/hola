@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylelogin.css') }}">
+    <link rel="icon" href="img/zorro.png" type="image/x-icon">
+</head>
+<body>
+    <form action="/login" method="post">
+        <h1 class="title">Inicio de sesión</h1>
+        <label>
+            Usuario: <input type="text" name="txtusuario">
+        </label>
+        <label>
+            Contraseña: <input type="password" name="txtcontrasena">
+        </label>
+        <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+        <button type="submit">Iniciar sesión</button>
+    </form>
+</body>
+</html>

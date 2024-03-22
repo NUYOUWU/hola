@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Editar Persona</h1>
+    <form method="POST" action="{{ url_for('editar_usuario', id=personas[0]) }}">
+        <label for="codigo">Código:</label>
+        <input type="number" id="codigo" name="idper" value="{{ personas[0] }}" readonly><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombreper" value="{{ personas[1] }}"><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellidoper" value="{{ personas[2] }}"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="emailper" value="{{ personas[3] }}"><br>
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccionper" value="{{ personas[4] }}"><br>
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefonoper" value="{{ personas[5] }}"><br>
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuarioper" value="{{ personas[6] }}"><br>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" id="contraseña" name="passwordper" value="{{ personas[7] }}"><br>
+        <input type="submit" value="Guardar cambios">
+    </form>
+</body>
+</html>

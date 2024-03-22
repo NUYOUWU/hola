@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Compras</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>REGISTRAR COMPRAS</h1>
+        <form method="POST" action="{{ url_for('compras') }}">
+            <label for="id_compra">ID de compra:</label>
+            <input type="text" id="id_compra" name="id_compra" required><br>
+            
+            <label for="fecha_compra">Fecha de compra:</label>
+            <input type="date" id="fecha_compra" name="fecha_compra" required><br>
+            
+            <label for="precio">Precio:</label>
+            <input type="number" id="precio" name="precio" min="0" step="0.01" required><br>
+
+            <label for="user_id">ID de usuario:</label>
+            <input type="text" id="user_id" name="user_id" required><br>
+
+            <label for="cancion_id">ID de canción:</label>
+            <input type="text" id="cancion_id" name="cancion_id" required><br>
+
+            <label for="metodo_pago">Método de pago:</label>
+            <select id="metodo_pago" name="metodo_pago" required>
+                <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+                <option value="Tarjeta de débito">Tarjeta de débito</option>
+                <option value="PayPal">PayPal</option>
+            </select><br>
+            
+            <button type="submit">Realizar compra</button>
+        </form>
+
+        <!-- Mostrar lista de compras -->
+        <h2>Lista de Compras</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID de Compra</th>
+                    <th>Fecha de Compra</th>
+                    <th>Precio</th>
+                    <th>ID de Usuario</th>
+                    <th>ID de Canción</th>
+                    <th>Método de Pago</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compra in compras %}
+                <tr>
+                    <td>{{ compra.id_compra }}</td>
+                    <td>{{ compra.fechaCompra }}</td>
+                    <td>{{ compra.precio }}</td>
+                    <td>{{ compra.userId }}</td>
+                    <td>{{ compra.id_cancion }}</td>
+                    <td>{{ compra.metodoPago }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_compra', id=compra.id_compra) }}">Editar</a>
+                        <form action="{{ url_for('eliminar_compra', id=compra.id_compra) }}" method="POST">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+
+

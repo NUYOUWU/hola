@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Canción</title>
+</head>
+<body>
+    <h1>Editar Canción</h1>
+    <form action="{{ url_for('editar_cancion', id=cancion[0]) }}" method="POST">
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" name="titulo" value="{{ cancion[1] }}"><br>
+        <label for="artista">Artista:</label><br>
+        <input type="text" id="artista" name="artista" value="{{ cancion[2] }}"><br>
+        <label for="genero">Género:</label><br>
+        <input type="text" id="genero" name="genero" value="{{ cancion[3] }}"><br>
+        <label for="precio">Precio:</label><br>
+        <input type="text" id="precio" name="precio" value="{{ cancion[4] }}"><br>
+        <label for="duracion">Duración:</label><br>
+        <input type="text" id="duracion" name="duracion" value="{{ cancion[5] }}"><br>
+        <label for="lanzamiento">Lanzamiento:</label><br>
+        <input type="text" id="lanzamiento" name="lanzamiento" value="{{ cancion[6] }}"><br><br>
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Canción</title>
+</head>
+<body>
+    <h1>¿Estás seguro de eliminar esta canción?</h1>
+    <p>Título: {{ cancion[1] }}</p>
+    <p>Artista: {{ cancion[2] }}</p>
+    <form action="{{ url_for('eliminar_cancion', id=cancion[0]) }}" method="POST">
+        <input type="submit" value="Eliminar">
+    </form>
+</body>
+</html>

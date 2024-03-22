@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Compra</title>
+</head>
+<body>
+    <h1>Editar Compra</h1>
+    <form action="{{ url_for('editar_compra', id=compra[0]) }}" method="POST">
+        <label for="fecha_compra">Fecha de Compra:</label><br>
+        <input type="text" id="fecha_compra" name="fecha_compra" value="{{ compra[1] }}"><br>
+        <label for="precio">Precio:</label><br>
+        <input type="text" id="precio" name="precio" value="{{ compra[2] }}"><br>
+        <label for="user_id">ID de Usuario:</label><br>
+        <input type="text" id="user_id" name="user_id" value="{{ compra[3] }}"><br>
+        <label for="cancion_id">ID de Canción:</label><br>
+        <input type="text" id="cancion_id" name="cancion_id" value="{{ compra[4] }}"><br>
+        <label for="metodo_pago">Método de Pago:</label><br>
+        <input type="text" id="metodo_pago" name="metodo_pago" value="{{ compra[5] }}"><br><br>
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
